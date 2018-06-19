@@ -1,3 +1,8 @@
+upstream upstream_server {
+  server ${NGINX_UPSTREAM_HOST}:${NGINX_UPSTREAM_PORT};
+  keepalive 64;
+}
+
 server {
   server_name ${NGINX_SERVER_NAME};
   listen ${NGINX_SERVER_PORT};
@@ -14,6 +19,6 @@ server {
   proxy_set_header Connection "Upgrade";
 
   location / {
-    proxy_pass ${NGINX_UPSTREAM_PROTOCOL}://${NGINX_UPSTREAM_HOST}:${NGINX_UPSTREAM_PORT};
+    proxy_pass ${NGINX_UPSTREAM_PROTOCOL}://upstream_server;
   }
 }
