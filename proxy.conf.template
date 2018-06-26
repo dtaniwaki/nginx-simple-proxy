@@ -1,6 +1,5 @@
 upstream upstream_server {
   server ${NGINX_UPSTREAM_HOST}:${NGINX_UPSTREAM_PORT};
-  keepalive 64;
 }
 
 server {
